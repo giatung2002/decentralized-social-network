@@ -85,7 +85,7 @@ export default function FeaturesPage() {
         </div>
 
         <div className="text-center mt-16">
-          <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-300">
+          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-300">
             Join the Decentralized Revolution
           </Button>
         </div>

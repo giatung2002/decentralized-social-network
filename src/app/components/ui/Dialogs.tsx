@@ -1,4 +1,5 @@
-import React, { Fragment, ReactNode, ReactElement } from 'react'
+import React from 'react'
+import { Fragment, ReactNode, ReactElement } from 'react'
 import { Dialog as HeadlessDialog, Transition } from '@headlessui/react'
 import { X } from 'lucide-react'
 
@@ -11,7 +12,7 @@ interface DialogProps {
 export function Dialog({ isOpen, onClose, children }: DialogProps) {
     return (
       <Transition appear show={isOpen} as={Fragment}>
-        <HeadlessDialog as="div" className="relative z-10" onClose={() => onClose()}>
+        <HeadlessDialog as="div" className="relative z-10" onClose={onClose}>
           <Transition.Child
             as={Fragment}
             enter="transition ease-out duration-300"
@@ -38,10 +39,10 @@ export function Dialog({ isOpen, onClose, children }: DialogProps) {
                 <HeadlessDialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <button
                     type="button"
+                    aria-label="Close"
                     className="absolute top-2 right-2 text-gray-400 hover:text-gray-500"
                     onClick={onClose}
                   >
-                    <span className="sr-only">Close</span>
                     <X className="h-6 w-6" aria-hidden="true" />
                   </button>
                   {children}

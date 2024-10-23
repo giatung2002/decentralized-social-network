@@ -1,6 +1,28 @@
-1. Clone this repository
-2. Install Dependencies: npm install
-3. Run the Development Server: npm run dev
+1. **Clone & Navigate:**
+   git clone https://github.com/giatung2002/decentralized-social-network.git
+   cd decentralized-social-network
+  
+
+2. **Remove Babel Config:**
+   rm babel.config.js
+
+3. **Install Dependencies:**
+
+   npm install
+  
+
+4. **(Optional) Set Up Jest:**
+   - Install testing libraries
+   - Configure `jest.config.js`
+   - Create `setupTests.js`
+
+5. **Clear Cache & Run Dev Server:**
+   rm -rf .next
+   npm run dev
+
+
+6. **(Optional) Run Tests:**
+   npm test
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

@@ -1,12 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
+import { usePathname } from 'next/navigation';
 
-interface HeaderProps {
-  currentPath: string;
-}
+export const Header: React.FC = () => {
+  const currentPath = usePathname();
 
-export const Header: React.FC<HeaderProps> = ({ currentPath }) => {
   return (
     <header className="w-full bg-gray-800">
       <div className="container mx-auto px-4 py-6 flex justify-between items-center">

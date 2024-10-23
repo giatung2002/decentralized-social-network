@@ -1,3 +1,21 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:security-node/recommended"
+  ],
+  "plugins": ["security-node"],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      }
+    }
+  ],
+  "reportUnusedDisableDirectives": true
 }

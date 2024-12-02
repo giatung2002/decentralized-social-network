@@ -8,7 +8,7 @@ const nextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self';",
+            value: "default-src 'self'; connect-src 'self' *; script-src 'self' 'unsafe-eval' 'unsafe-inline';",
           },
           {
             key: "X-Content-Type-Options",

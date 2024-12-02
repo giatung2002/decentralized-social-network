@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react'
 import { Button } from "@/app/ui/button"
 import { Shield, Users, Globe, ChevronLeft } from 'lucide-react'

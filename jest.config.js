@@ -20,7 +20,7 @@ const customJestConfig = {
         pageTitle: 'Test Report',
         outputPath: './test-report.html',
         includeFailureMsg: true,
-        includeConsoleLog: true,
+        YincludeConsoleLog: true,
       },
     ],
   ],

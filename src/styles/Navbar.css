@@ -1,0 +1,20 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #282c34;
+    /* Adjust colors to match your design */
+}
+
+.connect-button {
+    padding: 8px 16px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.connect-button:hover {
+    background-color: #21a1f1;
+} 

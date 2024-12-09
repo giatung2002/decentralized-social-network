@@ -2,6 +2,7 @@
 
 import React from 'react'
 import '@/styles/Dropdown.css'
+import Link from 'next/link';
 
 export default function Dropdown() {
     const handleLogout = () => {
@@ -14,8 +15,10 @@ export default function Dropdown() {
     return (
         <div className="dropdown">
             <ul>
-                <li>Profile</li>
+            <li><Link href="/profile">Profile</Link></li>
                 <li>Post</li>
+                <li>Messages</li>
+
                 <li onClick={handleLogout}>Logout</li>
             </ul>
         </div>

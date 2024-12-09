@@ -38,23 +38,23 @@ export default function AboutPage() {
           About Us – Empowering You with Decentralization
         </h1>
         <p className="text-xl text-gray-600 mb-12">
-          Our mission is to build a future where privacy and freedom are at the core of social connections.
+        Our mission is simple: to create a space where you can connect, share, and thrive without sacrificing your privacy or freedom.
         </p>
 
         <section className="mb-16">
           <p className="text-lg mb-6">
-            We believe in a world where people own their data, control their social interactions, and are free from centralized oversight. Our decentralized platform puts power back into your hands, allowing you to connect and share without compromising your privacy.
+          We understand that your data is yours, and your online interactions should be in your control
           </p>
         </section>
 
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-6 text-indigo-700">Our Mission</h2>
           <p className="text-lg mb-6">
-            Our mission is to redefine social networking by creating a decentralized platform that prioritizes user control, transparency, and community governance.
+          At DecentraNet, our mission is to redefine what it means to be online by offering a decentralized platform where you call the shots
           </p>
           <h2 className="text-3xl font-bold mb-6 text-indigo-700">Our Vision</h2>
           <p className="text-lg mb-6">
-            We envision a future where individuals can freely interact across decentralized networks, maintaining full ownership of their digital identities and content.
+          We see a future where you own your digital presence—no middlemen, no hidden agendas.
           </p>
         </section>
 
@@ -74,8 +74,7 @@ export default function AboutPage() {
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-6 text-indigo-700">Our Origins</h2>
           <p className="text-lg mb-6">
-            Frustrated by the lack of transparency and privacy in traditional social media, our team set out to build a decentralized alternative that empowers users to control their digital identities. We recognized the problems with centralized networks - data misuse, censorship, and privacy concerns - and created a solution that prioritizes user sovereignty and community-driven development.
-          </p>
+          We started DecentraNet with a simple belief: you deserve better. Like many of you, we were frustrated by the lack of transparency, privacy, and control in traditional social media          </p>
         </section>
 
         <section className="mb-16">
@@ -83,55 +82,17 @@ export default function AboutPage() {
           <p className="text-lg mb-6">
             Our platform thrives because of the community. Users not only participate in the network but also help shape its future by voting on governance proposals and contributing to the platform's development. We believe in the power of collective decision-making and the wisdom of the crowd.
           </p>
-          <Button variant="outline" className="mt-4">
-            <Link href="/community">Join Our Community</Link>
-          </Button>
-        </section>
-
-        <section className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-6 text-indigo-700">Be Part of the Future</h2>
-          <p className="text-lg mb-8">
-            Join us in redefining social networking. Be part of a platform where your voice matters, your data is yours, and your privacy is paramount.
-          </p>
-          <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-300">
-            Join the Movement
-          </Button>
+          <a 
+            href="https://discord.gg/TnA3TFV27e" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <Button variant="outline" className="mt-4">
+              Join Our Community
+            </Button>
+          </a>
         </section>
       </main>
-
-      <footer className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Connect</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Decentralized Forum</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Web3 Community</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Developer Discord</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Whitepaper</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Decentralization Guide</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Governance Model</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Platform</h4>
-              <ul className="space-y-2">
-                <li><Link href="/features" className="text-gray-300 hover:text-white transition-colors">Features</Link></li>
-                <li><Link href="/community" className="text-gray-300 hover:text-white transition-colors">Community</Link></li>
-                <li><Link href="/support" className="text-gray-300 hover:text-white transition-colors">Support</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} DecentraNet. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react'
+import Link from 'next/link'
 import { Button } from "@/app/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/Dialogs"
-import { Lock, Link, Coins, Users, FileText, Share2 } from 'lucide-react'
+import { Lock, Link as LinkIcon, Coins, Users, FileText, Share2 } from 'lucide-react'
 import { Header } from '@/app/components/Header'
 
 export default function FeaturesPage() {
@@ -11,7 +12,7 @@ export default function FeaturesPage() {
 
   const features = [
     {
-      icon: <Link className="w-12 h-12 text-indigo-500" />,
+      icon: <LinkIcon className="w-12 h-12 text-indigo-500" />,
       title: "Decentralized Control",
       description: "Users own their data—no central servers or third-party oversight. Control your content, connections, and privacy.",
       details: "In our decentralized network, data is stored across multiple nodes, ensuring no single entity has control over your information. This distributed approach enhances security and gives you full ownership of your digital presence."
@@ -84,46 +85,21 @@ export default function FeaturesPage() {
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-300">
-            Join the Decentralized Revolution
-          </Button>
+        <div className="text-center mt-16 mb-8">
+          <a 
+            href="https://tol0fsvtwcr.typeform.com/to/gHpeYyel?utm_source=xxxxx" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="inline-block"
+          >
+            <Button 
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-300"
+            >
+              Join the Decentralized Revolution
+            </Button>
+          </a>
         </div>
       </main>
-
-      <footer className="bg-gray-800 py-12 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Resources</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Blockchain Whitepaper</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Crypto Wallet Guide</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Decentralization FAQ</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Community</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Mastodon</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Web3 Forum</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Developer Discord</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Cookie Policy</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} DecentralNet. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

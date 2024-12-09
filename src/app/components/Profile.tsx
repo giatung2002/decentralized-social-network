@@ -1,68 +1,87 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useWallet } from '@/context/WalletContext';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/app/ui/button";
-import { User, Camera, Edit2 } from 'lucide-react'; // Import icons
+import { User, Camera, Edit2 } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient';
 
 interface UserProfile {
+  id?: string;
   username: string;
   bio: string;
   avatar: string;
-  walletAddress: string;
 }
 
 export default function Profile() {
-  const { account } = useWallet();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     bio: '',
   });
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState('');
+
+  // Fetch profile on component mount
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .single();
+
+      if (error && error.code !== 'PGRST116') { // PGRST116 means no rows returned
+        throw error;
+      }
+
+      if (data) {
+        setProfile(data);
+        setFormData({
+          username: data.username,
+          bio: data.bio || '',
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    }
+  };
 
   const handleSave = async () => {
     try {
-      if (!account) return;
-
-      // Dynamically import ipfs-http-client
-      const { create } = await import('ipfs-http-client');
-
-      const projectId = process.env.NEXT_PUBLIC_INFURA_PROJECT_ID;
-      const projectSecret = process.env.NEXT_PUBLIC_INFURA_PROJECT_SECRET;
-
-      if (!projectId || !projectSecret) {
-        throw new Error('Infura Project ID and Secret must be defined in environment variables');
-      }
-
-      const auth = 'Basic ' + Buffer.from(`${projectId}:${projectSecret}`).toString('base64');
-
-      const ipfsClient = create({
-        host: 'ipfs.infura.io',
-        port: 5001,
-        protocol: 'https',
-        headers: {
-          authorization: auth,
-        },
-      });
+      setIsSaving(true);
+      setSaveMessage('');
 
       const profileData = {
         username: formData.username,
         bio: formData.bio,
-        walletAddress: account,
-        avatar: '',
+        avatar: profile?.avatar || '',
       };
 
-      const added = await ipfsClient.add(JSON.stringify(profileData));
-      console.log('Profile saved with CID:', added.path);
-      
-      setProfile(profileData);
+      const { data, error } = await supabase
+        .from('profiles')
+        .upsert(profileData)
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      setProfile(data);
       setIsEditing(false);
+      setSaveMessage('Profile saved successfully!');
+      console.log('Profile saved successfully');
     } catch (error) {
       console.error('Error saving profile:', error);
+      setSaveMessage('Error saving profile. Please try again.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
+  // Keep your existing JSX/UI code below this line
   return (
     <div className="max-w-4xl mx-auto p-8">
       <div className="bg-white rounded-2xl shadow-lg p-8">
@@ -116,11 +135,21 @@ export default function Profile() {
               </Button>
               <Button 
                 onClick={handleSave}
+                disabled={isSaving}
                 className="px-6 bg-blue-500 hover:bg-blue-600"
               >
-                Save Changes
+                {isSaving ? 'Saving...' : 'Save Changes'}
               </Button>
             </div>
+            {saveMessage && (
+              <div className={`mt-4 p-3 rounded-lg text-center ${
+                saveMessage.includes('Error') 
+                  ? 'bg-red-100 text-red-700' 
+                  : 'bg-green-100 text-green-700'
+              }`}>
+                {saveMessage}
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center">
@@ -143,7 +172,6 @@ export default function Profile() {
                 <div className="space-y-2">
                   <h2 className="text-3xl font-bold text-gray-900">{profile.username}</h2>
                   <p className="text-gray-600 max-w-md mx-auto">{profile.bio}</p>
-                  <p className="text-sm text-gray-500">{account}</p>
                 </div>
 
                 <Button 

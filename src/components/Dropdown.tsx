@@ -15,10 +15,9 @@ export default function Dropdown() {
     return (
         <div className="dropdown">
             <ul>
-            <li><Link href="/profile">Profile</Link></li>
-                <li>Post</li>
+                <li><Link href="/profile">Profile</Link></li>
+                <li><Link href="/posts">Posts</Link></li>
                 <li>Messages</li>
-
                 <li onClick={handleLogout}>Logout</li>
             </ul>
         </div>

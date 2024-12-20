@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",

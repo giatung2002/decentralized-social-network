@@ -40,7 +40,7 @@
   "include": [
     "src/**/*",
     ".next/types/**/*.ts"
-  ],
+, "test"  ],
   "exclude": [
     "node_modules"
   ]

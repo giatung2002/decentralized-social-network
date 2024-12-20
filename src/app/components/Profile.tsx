@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/app/ui/button";
 import { User, Camera, Edit2 } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
+import { useWallet } from '@/context/WalletContext';
 
 interface UserProfile {
   id?: string;
@@ -13,6 +14,7 @@ interface UserProfile {
 }
 
 export default function Profile() {
+  const { account } = useWallet();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,17 +26,29 @@ export default function Profile() {
 
   // Fetch profile on component mount
   useEffect(() => {
-    fetchProfile();
-  }, []);
+    if (account) {  // Only fetch if we have a connected wallet
+      fetchProfile();
+    }
+  }, [account]); // Add account to the dependency array
 
   const fetchProfile = async () => {
     try {
+      if (!account) return;
+      
+      console.log('Fetching profile for wallet:', account);
+
+      // Simple query without ordering by created_at
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
+        .eq('wallet_address', account)
+        .limit(1)
         .single();
 
-      if (error && error.code !== 'PGRST116') { // PGRST116 means no rows returned
+      console.log('Profile data:', data);
+      console.log('Error if any:', error);
+
+      if (error && error.code !== 'PGRST116') {
         throw error;
       }
 
@@ -55,10 +69,16 @@ export default function Profile() {
       setIsSaving(true);
       setSaveMessage('');
 
+      if (!account) {
+        setSaveMessage('Please connect your wallet first');
+        return;
+      }
+
       const profileData = {
         username: formData.username,
         bio: formData.bio,
         avatar: profile?.avatar || '',
+        wallet_address: account
       };
 
       const { data, error } = await supabase
@@ -72,7 +92,6 @@ export default function Profile() {
       setProfile(data);
       setIsEditing(false);
       setSaveMessage('Profile saved successfully!');
-      console.log('Profile saved successfully');
     } catch (error) {
       console.error('Error saving profile:', error);
       setSaveMessage('Error saving profile. Please try again.');

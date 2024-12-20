@@ -97,7 +97,7 @@ export default function Home() {
               <CardHeader>
                 <div className="flex items-center space-x-4">
                   <Avatar>
-                    <AvatarImage src="/avatars/01.png" alt="Avatar" />
+                    <AvatarImage alt="Avatar" />
                     <AvatarFallback>TL</AvatarFallback>
                   </Avatar>
                   <div>
@@ -114,7 +114,7 @@ export default function Home() {
               <CardHeader>
                 <div className="flex items-center space-x-4">
                   <Avatar>
-                    <AvatarImage src="/avatars/02.png" alt="Avatar" />
+                    <AvatarImage alt="Avatar" />
                     <AvatarFallback>LT</AvatarFallback>
                   </Avatar>
                   <div>

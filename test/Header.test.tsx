@@ -4,10 +4,9 @@ import { Header } from '@/app/components/Header';
 
 describe('Header Component', () => {
   test('renders the Header component', () => {
-    render(<Header currentPath="/" />);
+    render(<Header />);
     
     const headerElement = screen.getByRole('banner');
     expect(headerElement).toBeInTheDocument();
   });
 });
-
